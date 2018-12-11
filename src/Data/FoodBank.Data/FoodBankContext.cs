@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FoodBank.Data.Models;
 using FoodBank.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -11,6 +12,11 @@ namespace FoodBank.Web.Models
 {
     public class FoodBankContext : IdentityDbContext<FoodBankUser>
     {
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Market> Markets { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
+
         public FoodBankContext(DbContextOptions<FoodBankContext> options)
             : base(options)
         {
@@ -19,9 +25,14 @@ namespace FoodBank.Web.Models
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            builder.Entity<Order>(x =>
+            {
+                x.HasKey(z => new
+                {
+                    z.FoodBankUserId,
+                    z.ProductId
+                });
+            });
         }
     }
 }

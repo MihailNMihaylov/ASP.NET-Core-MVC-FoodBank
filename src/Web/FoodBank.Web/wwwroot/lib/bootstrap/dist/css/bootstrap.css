@@ -2520,6 +2520,11 @@ fieldset:disabled a.btn {
     border-color: #81d4fa;
 }
 
+.btn-lime-accent {
+    color: #eeff41;
+    background-color: #eeff41;
+    border-color: #eeff41;
+}
 .btn-danger:hover {
   color: #fff;
   background-color: #c82333;

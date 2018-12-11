@@ -4,14 +4,16 @@ using FoodBank.Web.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodBank.Data.Migrations
 {
     [DbContext(typeof(FoodBankContext))]
-    partial class FoodBankContextModelSnapshot : ModelSnapshot
+    [Migration("20181211142218_addedEntities")]
+    partial class addedEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

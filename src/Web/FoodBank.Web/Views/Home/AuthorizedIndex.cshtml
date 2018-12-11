@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using FoodBank.Web.Areas.Identity.Data;
+
+@inject SignInManager<FoodBankUser> SignInManager
+@inject UserManager<FoodBankUser> UserManager
+
+@{
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+
+}
+<h1>Authorized user Index! Hello @User.Identity.Name!</h1>

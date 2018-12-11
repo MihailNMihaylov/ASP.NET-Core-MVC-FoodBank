@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FoodBank.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FoodBank.Web.Controllers
 {
@@ -12,7 +13,17 @@ namespace FoodBank.Web.Controllers
     {
         public IActionResult Index()
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                return this.RedirectToAction("AuthorizedIndex");
+            }
             return View();
+        }
+
+        [Authorize]
+        public IActionResult AuthorizedIndex()
+        {
+            return View("AuthorizedIndex");
         }
 
         public IActionResult AboutUs()
