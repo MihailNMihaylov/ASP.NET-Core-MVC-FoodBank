@@ -14,13 +14,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FoodBank.Web.Models;
 using FoodBank.Web.Areas.Identity.Data;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FoodBank.Web
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
+        { 
             Configuration = configuration;
         }
 
@@ -41,7 +42,7 @@ namespace FoodBank.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<FoodBankUser>(options => 
+            services.AddDefaultIdentity<FoodBankUser>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequiredLength = 3;
@@ -50,6 +51,8 @@ namespace FoodBank.Web
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
+            .AddRoles<IdentityRole>()
+            .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<FoodBankContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -83,5 +86,7 @@ namespace FoodBank.Web
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
+     
     }
 }

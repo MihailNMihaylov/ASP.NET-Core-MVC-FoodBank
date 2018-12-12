@@ -8,4 +8,11 @@
     Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
 
 }
-<h1>Authorized user Index! Hello @User.Identity.Name!</h1>
+@if (this.User.IsInRole("Admin"))
+{
+    <h1>Authorized user Index! Hello admin- @User.Identity.Name!</h1>
+}
+else
+{
+    <h1>Authorized user Index! Hello @User.Identity.Name!</h1>
+}

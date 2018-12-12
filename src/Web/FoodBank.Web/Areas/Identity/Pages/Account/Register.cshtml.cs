@@ -10,6 +10,9 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using FoodBank.Web.Models;
+using System.Linq;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FoodBank.Web.Areas.Identity.Pages.Account
 {
@@ -18,19 +21,25 @@ namespace FoodBank.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<FoodBankUser> _signInManager;
         private readonly UserManager<FoodBankUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private FoodBankContext context;
 
         public RegisterModel(
             UserManager<FoodBankUser> userManager,
             SignInManager<FoodBankUser> signInManager,
+            RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            FoodBankContext context)
         {
+            this.context = context;
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            this._roleManager = roleManager;
         }
 
         [BindProperty]
@@ -40,6 +49,10 @@ namespace FoodBank.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
+            [Required]
+            [Display(Name = "Nickname")]
+            public string Nickname { get; set; }
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -64,10 +77,27 @@ namespace FoodBank.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            //returnUrl = returnUrl ?? Url.Content("~/");
+            //if (ModelState.IsValid)
+            //{             
+            //    var user = new FoodBankUser() { UserName = Input.Nickname, Email = Input.Email };
+            //    var result = await _userManager.CreateAsync(user, Input.Password);
+
+            //    await _userManager.AddToRoleAsync(user, "Admin");
+
+            //    if (result.Succeeded)
+            //    {
+            //        await _signInManager.SignInAsync(user, isPersistent: false);
+            //        return LocalRedirect(returnUrl);
+            //    }
+            //}
+            //return Page();
+
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new FoodBankUser { UserName = Input.Email, Email = Input.Email };
+                 await CreateRoles();
+                var user = new FoodBankUser { UserName = Input.Nickname, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -80,11 +110,20 @@ namespace FoodBank.Web.Areas.Identity.Pages.Account
                         values: new { userId = user.Id, code = code },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
+                    //TODO: register as admin if the user is the first one (NOT WORKING)
+                    if (context.Users.Count() == 1)//not working
+                    {
+                        await _userManager.AddToRoleAsync(user, "Admin");
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, "Customer");
+                    }
+                    
                     return LocalRedirect(returnUrl);
+
                 }
                 foreach (var error in result.Errors)
                 {
@@ -94,6 +133,19 @@ namespace FoodBank.Web.Areas.Identity.Pages.Account
 
             // If we got this far, something failed, redisplay form
             return Page();
+        }
+
+        private async Task CreateRoles()
+        {
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+            {
+                var adminRole = new IdentityRole("Admin");
+                await _roleManager.CreateAsync(adminRole);
+
+                var customerRole = new IdentityRole("Customer");
+                await _roleManager.CreateAsync(customerRole);
+            }
+           
         }
     }
 }

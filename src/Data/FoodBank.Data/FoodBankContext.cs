@@ -17,6 +17,10 @@ namespace FoodBank.Web.Models
         public DbSet<Market> Markets { get; set; }
         public DbSet<FeedBack> FeedBacks { get; set; }
 
+        public FoodBankContext()
+        {
+
+        }
         public FoodBankContext(DbContextOptions<FoodBankContext> options)
             : base(options)
         {
