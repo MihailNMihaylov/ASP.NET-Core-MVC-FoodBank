@@ -26,7 +26,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light  border-bottom box-shadow mb-3 btn-lime-accent">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HOME IMAGE</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HOME IMAGE &#174;</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,22 +34,33 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><b>Home</b></a>
-                        </li>
+                        </li>*@
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item ">
-                                <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Applies page</b></a>
-                            </li>
+                            @*<li class="nav-item ">
+                                    <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Applies page</b></a>
+                                </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Discount page</b></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark btn-info" asp-area="Administration" asp-controller="Market" asp-action="Create"><b>Create new market</b></a>
-                            </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Discount page</b></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark btn-info" asp-area="Administration" asp-controller="Market" asp-action="Create"><b>Create new market</b></a>
+                                </li>*@
 
+                            <div class="dropdown">
+                                <button class="nav-item dropdown-toggle"  id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Admin Settings
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="/Administration/Market/Create">Create Market</a>
+                                    <a class="dropdown-item" href="/Administration/Product/Create">Create Product</a>
+                                    <a class="dropdown-item" href="#">Article</a>
+                                    <a class="dropdown-item" href="#">blog</a>
+                                </div>
+                            </div>
                         }
                         else
                         {

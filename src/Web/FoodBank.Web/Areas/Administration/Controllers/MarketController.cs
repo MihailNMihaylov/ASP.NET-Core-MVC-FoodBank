@@ -35,12 +35,6 @@ namespace FoodBank.Web.Areas.Administration.Controllers
         {
             var market  = Mapper.Map<Market>(model);
 
-            Console.BackgroundColor = ConsoleColor.Red;
-            Console.WriteLine(market.Location);
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.BackgroundColor = ConsoleColor.Black;
             await this.markets.AddAsync(market);
             await this.markets.SaveChangesAsync();
 

@@ -72,6 +72,7 @@ namespace FoodBank.Web
 
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));    
             services.AddScoped<IMarketService, MarketService>();
+            services.AddScoped<IProductService, ProductService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

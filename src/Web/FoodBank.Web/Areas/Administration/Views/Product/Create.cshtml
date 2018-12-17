@@ -1,0 +1,20 @@
+﻿@using FoodBank.Web.Areas.Administration.Models
+@model CreateProductViewModel
+@{
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+
+}
+
+<title>Create Product</title>
+<div class="row">
+    <h3>Create new Product </h3>
+    <form asp-action="Create" asp-controller="Product" asp-area="Administration" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" id="Name" name="Name" placeholder="Name of product..." class="form-control" />
+            <label asp-for="Price"></label>
+            <input asp-for="Price" id="Price" name="Price" placeholder="Price of product..." class="form-control" />
+            <input type="submit" class="btn btn-primary" value="Create Product" />
+        </div>
+    </form>
+</div>
