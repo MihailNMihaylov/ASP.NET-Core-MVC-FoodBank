@@ -11,7 +11,7 @@ using FoodBank.Web.Areas.Identity.Data;
 
 namespace FoodBank.Web.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private FoodBankContext context;
         private RoleManager<IdentityRole> _roleManager;

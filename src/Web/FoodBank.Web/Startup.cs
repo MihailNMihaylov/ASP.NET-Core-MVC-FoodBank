@@ -15,13 +15,19 @@ using Microsoft.Extensions.DependencyInjection;
 using FoodBank.Web.Models;
 using FoodBank.Web.Areas.Identity.Data;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using FoodBank.Services.DataServices;
+using FoodBank.Services.Mapping;
+using FoodBank.Web.Areas.Administration.Models;
+using FoodBank.Data.Common;
+using FoodBank.Data;
+using AutoMapper;
 
 namespace FoodBank.Web
 {
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        { 
+        {
             Configuration = configuration;
         }
 
@@ -30,6 +36,9 @@ namespace FoodBank.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            AutoMapperConfig.RegisterMappings(
+              typeof(CreateMarketViewModel).Assembly
+          );
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -55,7 +64,14 @@ namespace FoodBank.Web
             .AddRoleManager<RoleManager<IdentityRole>>()
                 .AddEntityFrameworkStores<FoodBankContext>();
 
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddAutoMapper();
+
+
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));    
+            services.AddScoped<IMarketService, MarketService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,9 +100,13 @@ namespace FoodBank.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                   name: "areas",
+                   template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
 
-     
+
     }
 }

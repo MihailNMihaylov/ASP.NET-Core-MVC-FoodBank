@@ -35,14 +35,33 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index"><b>Home</b></a>
                         </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Feedback">Give us feedback</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark btn-danger" asp-area="" asp-controller="Products" asp-action="Discount"><b>Discounts</b></a>
-                    </li>                        
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item ">
+                                <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Applies page</b></a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn-info" asp-area="" asp-controller="Products" asp-action="Discount"><b>Discount page</b></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn-info" asp-area="Administration" asp-controller="Market" asp-action="Create"><b>Create new market</b></a>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Feedback">Give us feedback</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark btn-danger" asp-area="" asp-controller="Products" asp-action="Discount"><b>Discounts</b></a>
+                            </li>
+                        }
+
+
                     </ul>
                 </div>
             </div>

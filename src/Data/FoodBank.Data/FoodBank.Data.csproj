@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FoodBank.Data.Common\FoodBank.Data.Common.csproj" />
     <ProjectReference Include="..\FoodBank.Data.Models\FoodBank.Data.Models.csproj" />
   </ItemGroup>
 

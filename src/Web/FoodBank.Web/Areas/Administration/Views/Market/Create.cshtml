@@ -1,0 +1,17 @@
+﻿@using FoodBank.Web.Areas.Administration.Models
+@model CreateMarketViewModel
+@{
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+
+}
+<title>Create Market</title>
+<div class="row">
+    <h3>Create new Market </h3>
+    <form asp-action="Create" asp-controller="Market" asp-area="Administration" method="post" class="form-horizontal">
+        <div class="form-group">
+            <label asp-for="Location"></label>
+            <input asp-for="Location" id="Location" name="Location" class="form-control" />
+            <input type="submit" class="btn btn-primary" value="Create Category" />
+        </div>
+    </form>
+</div>

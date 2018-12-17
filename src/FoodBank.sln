@@ -1,17 +1,27 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.28307.106
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBank.Web", "Web\FoodBank.Web\FoodBank.Web.csproj", "{A2057B0D-192E-4C5F-BF6D-884A5942D666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Web", "Web\FoodBank.Web\FoodBank.Web.csproj", "{A2057B0D-192E-4C5F-BF6D-884A5942D666}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{22B6118F-46E9-4C4B-924A-98961B580F57}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0FDE111F-6D0A-4F10-BD1B-7D52537F11B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBank.Data", "Data\FoodBank.Data\FoodBank.Data.csproj", "{16EAA937-DACF-4F0E-8509-3D0744615257}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Data", "Data\FoodBank.Data\FoodBank.Data.csproj", "{16EAA937-DACF-4F0E-8509-3D0744615257}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBank.Data.Models", "Data\FoodBank.Data.Models\FoodBank.Data.Models.csproj", "{CF07F671-B43D-4624-B76D-4E7E6FC34326}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Data.Models", "Data\FoodBank.Data.Models\FoodBank.Data.Models.csproj", "{CF07F671-B43D-4624-B76D-4E7E6FC34326}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8063B450-429E-4FF5-B564-752FE3DBAE0A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Services.DataServices", "Services\FoodBank.Services.DataServices\FoodBank.Services.DataServices.csproj", "{6F420815-19B3-45F1-8481-597A2A2AACEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Services.ViewModels", "Services\FoodBank.Services.ViewModels\FoodBank.Services.ViewModels.csproj", "{3A0859BA-4F10-4682-9668-29F2BEA12DC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodBank.Services.Mapping", "Services\FoodBank.Services.Mapping\FoodBank.Services.Mapping.csproj", "{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodBank.Data.Common", "Data\FoodBank.Data.Common\FoodBank.Data.Common.csproj", "{272F47A6-D1E5-4ACD-BBE2-5AF35317335B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +41,22 @@ Global
 		{CF07F671-B43D-4624-B76D-4E7E6FC34326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF07F671-B43D-4624-B76D-4E7E6FC34326}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF07F671-B43D-4624-B76D-4E7E6FC34326}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F420815-19B3-45F1-8481-597A2A2AACEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F420815-19B3-45F1-8481-597A2A2AACEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F420815-19B3-45F1-8481-597A2A2AACEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F420815-19B3-45F1-8481-597A2A2AACEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A0859BA-4F10-4682-9668-29F2BEA12DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A0859BA-4F10-4682-9668-29F2BEA12DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A0859BA-4F10-4682-9668-29F2BEA12DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A0859BA-4F10-4682-9668-29F2BEA12DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{272F47A6-D1E5-4ACD-BBE2-5AF35317335B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{272F47A6-D1E5-4ACD-BBE2-5AF35317335B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{272F47A6-D1E5-4ACD-BBE2-5AF35317335B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{272F47A6-D1E5-4ACD-BBE2-5AF35317335B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +65,10 @@ Global
 		{A2057B0D-192E-4C5F-BF6D-884A5942D666} = {22B6118F-46E9-4C4B-924A-98961B580F57}
 		{16EAA937-DACF-4F0E-8509-3D0744615257} = {0FDE111F-6D0A-4F10-BD1B-7D52537F11B6}
 		{CF07F671-B43D-4624-B76D-4E7E6FC34326} = {0FDE111F-6D0A-4F10-BD1B-7D52537F11B6}
+		{6F420815-19B3-45F1-8481-597A2A2AACEC} = {8063B450-429E-4FF5-B564-752FE3DBAE0A}
+		{3A0859BA-4F10-4682-9668-29F2BEA12DC0} = {8063B450-429E-4FF5-B564-752FE3DBAE0A}
+		{2DD45FF8-2C69-4DDB-BD89-1FAB6E48CCBE} = {8063B450-429E-4FF5-B564-752FE3DBAE0A}
+		{272F47A6-D1E5-4ACD-BBE2-5AF35317335B} = {0FDE111F-6D0A-4F10-BD1B-7D52537F11B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {662F9261-EF3B-457A-827E-1EA7ACD9D658}
