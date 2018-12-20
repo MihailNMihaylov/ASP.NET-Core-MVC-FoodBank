@@ -1,1 +1,65 @@
-﻿<h1>about us market</h1>
+﻿@using Microsoft.AspNetCore.Identity
+@using FoodBank.Web.Areas.Identity.Data;
+
+@inject SignInManager<FoodBankUser> SignInManager
+@inject UserManager<FoodBankUser> UserManager
+@model IndexViewModel
+
+@{
+    Layout = "~/Views/Shared/_AuthorizedLayout.cshtml";
+
+}
+
+@{var counter = 0;}
+
+
+@if (User.IsInRole("Admin"))
+{
+<div class="row">
+    @foreach (var market in Model.Markets)
+    {
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <img class="card-img-top" src="~/css/supermarket-aboutUs.jpg" alt="card image top">
+                <div class="card-body">
+                    <h3 class="card-title">@market.Location</h3>
+                    <p class="card-text">this is a simple card example</p>
+                    <button type="button" class="btn btn-outline-danger float-right">Danger</button>
+                </div>
+
+            </div>
+        </div>
+    }
+
+        <div class="col-sm-4 mt-5">
+            <div class="card">
+                <img class="card-img-top" src="~/css/add-symbol.jpg" alt="card image top">
+                <div class="card-body text-center">
+                    <a asp-area="Administration" asp-controller="Market" asp-action="Create" type="button" class="btn btn-success btn-lg text-center">Add Market</a>
+                </div>
+
+            </div>
+        </div>
+</div>
+}
+   
+
+
+
+
+
+
+
+
+
+
+    @*<div class="col-sm-4 mt-5">
+            <div class="card">
+                <img class="card-img-top" src="https://source.unsplash.com/daily" alt="card image top">
+                <div class="card-body">
+                    <h3 class="card-title">card title</h3>
+                    <h4 class="card-subtitle">card subtitle</h4>
+                    <p class="card-text">this is a simple card example</p>
+                </div>
+            </div>
+        </div>*@
